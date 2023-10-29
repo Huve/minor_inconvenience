@@ -1,3 +1,178 @@
-[gd_scene format=3 uid="uid://cnd4um8dqovvl"]
+[gd_scene load_steps=14 format=3 uid="uid://cnd4um8dqovvl"]
+
+[ext_resource type="Script" path="res://Game.gd" id="1_vbgrm"]
+[ext_resource type="Texture2D" uid="uid://digppf2l3kqo5" path="res://images/TX Tileset Grass.png" id="1_wvrlh"]
+[ext_resource type="Script" path="res://LevelTileMap.gd" id="3_7ymy6"]
+[ext_resource type="Script" path="res://PlayerCharacterBody2D.gd" id="4_7ludo"]
+[ext_resource type="Texture2D" uid="uid://u6p3vrwc2jtt" path="res://images/TX Player.png" id="4_f0eyl"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gnjey"]
+texture = ExtResource("1_wvrlh")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_0l0lx"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_gnjey")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gs4k5"]
+
+[sub_resource type="Animation" id="Animation_y2bht"]
+resource_name = "player_movement_1"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_wfx0p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_bycuh"]
+resource_name = "player_movement_2"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_osodt"]
+resource_name = "player_movement_3"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vy8i4"]
+_data = {
+"RESET": SubResource("Animation_wfx0p"),
+"player_movement_1": SubResource("Animation_y2bht"),
+"player_movement_2": SubResource("Animation_bycuh"),
+"player_movement_3": SubResource("Animation_osodt")
+}
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_vbgrm")
+
+[node name="LevelTileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_0l0lx")
+format = 2
+script = ExtResource("3_7ymy6")
+
+[node name="PlayerCharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(40, 33)
+script = ExtResource("4_7ludo")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerCharacterBody2D"]
+position = Vector2(0, -8)
+texture = ExtResource("4_f0eyl")
+hframes = 4
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCharacterBody2D"]
+shape = SubResource("RectangleShape2D_gs4k5")
+
+[node name="PlayerAnimationPlayer" type="AnimationPlayer" parent="PlayerCharacterBody2D"]
+libraries = {
+"": SubResource("AnimationLibrary_vy8i4")
+}

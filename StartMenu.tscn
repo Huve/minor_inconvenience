@@ -3,6 +3,21 @@
 [ext_resource type="Script" path="res://StartMenu.gd" id="1_28rb6"]
 [ext_resource type="Texture2D" uid="uid://2dfp0ri8wgsh" path="res://images/bg_temp_sheet.png" id="2_f06wn"]
 
+[sub_resource type="Animation" id="Animation_3h1lt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_7d6ek"]
 resource_name = "bg_animation"
 length = 0.4
@@ -17,21 +32,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [0, 1, 2, 3, 4]
-}
-
-[sub_resource type="Animation" id="Animation_3h1lt"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8ucwo"]
@@ -78,3 +78,5 @@ position = Vector2(799, 458)
 scale = Vector2(0.828125, 0.825926)
 texture = ExtResource("2_f06wn")
 hframes = 5
+
+[connection signal="pressed" from="Control/MarginContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]

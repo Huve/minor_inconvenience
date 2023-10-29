@@ -10,3 +10,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	_animation_player.play("bg_animation")
+
+
+func _on_start_game_button_pressed():
+	# Start a new game
+	get_tree().change_scene_to_file("res://Game.tscn")
