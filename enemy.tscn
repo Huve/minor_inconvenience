@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=3 uid="uid://wbve38omeo7j"]
+
+[ext_resource type="Texture2D" uid="uid://lth60ow11pbe" path="res://wolf_sprite_mod.png" id="1_h6ex5"]
+[ext_resource type="Script" path="res://wolfEnemy.gd" id="1_ugmvh"]
+
+[sub_resource type="Animation" id="Animation_f2euc"]
+resource_name = "walkDown"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_thj4p"]
+resource_name = "walkLeft"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_7c15a"]
+resource_name = "walkRight"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_bxf21"]
+resource_name = "walkUp"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8rxup"]
+_data = {
+"walkDown": SubResource("Animation_f2euc"),
+"walkLeft": SubResource("Animation_thj4p"),
+"walkRight": SubResource("Animation_7c15a"),
+"walkUp": SubResource("Animation_bxf21")
+}
+
+[node name="wolfEnemy" type="CharacterBody2D"]
+script = ExtResource("1_ugmvh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.05, 2.20833)
+texture = ExtResource("1_h6ex5")
+hframes = 4
+vframes = 4
+frame = 12
+
+[node name="WolfAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8rxup")
+}
