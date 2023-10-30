@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://cnd4um8dqovvl"]
+[gd_scene load_steps=15 format=3 uid="uid://cnd4um8dqovvl"]
 
 [ext_resource type="Script" path="res://Game.gd" id="1_vbgrm"]
 [ext_resource type="Texture2D" uid="uid://digppf2l3kqo5" path="res://images/TX Tileset Grass.png" id="1_wvrlh"]
 [ext_resource type="Script" path="res://LevelTileMap.gd" id="3_7ymy6"]
 [ext_resource type="Script" path="res://PlayerCharacterBody2D.gd" id="4_7ludo"]
 [ext_resource type="Texture2D" uid="uid://u6p3vrwc2jtt" path="res://images/TX Player.png" id="4_f0eyl"]
+[ext_resource type="Script" path="res://PlayerCamera2D.gd" id="6_1b88m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gnjey"]
 texture = ExtResource("1_wvrlh")
@@ -176,3 +177,9 @@ shape = SubResource("RectangleShape2D_gs4k5")
 libraries = {
 "": SubResource("AnimationLibrary_vy8i4")
 }
+
+[node name="PlayerCamera2D" type="Camera2D" parent="PlayerCharacterBody2D" node_paths=PackedStringArray("tilemap")]
+limit_left = 0
+limit_top = 0
+script = ExtResource("6_1b88m")
+tilemap = NodePath("../../LevelTileMap")
