@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cnd4um8dqovvl"]
+[gd_scene load_steps=16 format=3 uid="uid://cnd4um8dqovvl"]
 
 [ext_resource type="Script" path="res://Game.gd" id="1_vbgrm"]
 [ext_resource type="Texture2D" uid="uid://digppf2l3kqo5" path="res://images/TX Tileset Grass.png" id="1_wvrlh"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://PlayerCharacterBody2D.gd" id="4_7ludo"]
 [ext_resource type="Texture2D" uid="uid://u6p3vrwc2jtt" path="res://images/TX Player.png" id="4_f0eyl"]
 [ext_resource type="PackedScene" uid="uid://wbve38omeo7j" path="res://enemy.tscn" id="6_h0cjy"]
+[ext_resource type="Script" path="res://GameInfoNode.gd" id="7_y38ur"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gnjey"]
 texture = ExtResource("1_wvrlh")
@@ -189,3 +190,6 @@ position = Vector2(403, 252)
 
 [node name="wolfEnemy4" parent="." instance=ExtResource("6_h0cjy")]
 position = Vector2(959, 605)
+
+[node name="GameInfoNode" type="Node" parent="."]
+script = ExtResource("7_y38ur")
