@@ -3,8 +3,8 @@ extends TileMap
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var level_width = 400
-	var level_height = 200
+	var level_width = 80
+	var level_height = 40
 	generate_level(level_width, level_height)
 
 

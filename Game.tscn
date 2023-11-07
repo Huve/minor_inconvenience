@@ -170,6 +170,8 @@ libraries = {
 
 [node name="PlayerCamera2D" type="Camera2D" parent="PlayerCharacterBody2D"]
 position = Vector2(0, 2)
+limit_left = 0
+limit_top = 0
 script = ExtResource("6_xnst2")
 
 [node name="wolfEnemy" parent="." instance=ExtResource("6_h0cjy")]
