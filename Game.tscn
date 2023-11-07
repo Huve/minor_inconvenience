@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cnd4um8dqovvl"]
+[gd_scene load_steps=18 format=3 uid="uid://cnd4um8dqovvl"]
 
 [ext_resource type="Script" path="res://Game.gd" id="1_vbgrm"]
 [ext_resource type="Texture2D" uid="uid://digppf2l3kqo5" path="res://images/TX Tileset Grass.png" id="1_wvrlh"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://wbve38omeo7j" path="res://enemy.tscn" id="6_h0cjy"]
 [ext_resource type="Script" path="res://PlayerCamera2D.gd" id="6_xnst2"]
 [ext_resource type="Script" path="res://GameInfoNode.gd" id="7_y38ur"]
+[ext_resource type="Script" path="res://GameControlNode.gd" id="8_tqrfe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_of8oy"]
 texture = ExtResource("1_wvrlh")
@@ -185,6 +186,26 @@ position = Vector2(403, 252)
 
 [node name="wolfEnemy4" parent="." instance=ExtResource("6_h0cjy")]
 position = Vector2(959, 605)
+
+[node name="GameControlNode" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_tqrfe")
+
+[node name="LevelTimer" type="Timer" parent="GameControlNode"]
+
+[node name="CurrentScoreLabel" type="Label" parent="GameControlNode"]
+offset_left = 2.0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="LevelTimeLabel" type="Label" parent="GameControlNode"]
+offset_left = 1.0
+offset_top = 23.0
+offset_right = 41.0
+offset_bottom = 46.0
 
 [node name="GameInfoNode" type="Node" parent="."]
 script = ExtResource("7_y38ur")
