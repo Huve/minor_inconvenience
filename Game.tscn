@@ -196,12 +196,14 @@ script = ExtResource("8_tqrfe")
 
 [node name="LevelTimer" type="Timer" parent="GameControlNode"]
 
-[node name="CurrentScoreLabel" type="Label" parent="GameControlNode"]
+[node name="UICanvasLayer" type="CanvasLayer" parent="GameControlNode"]
+
+[node name="CurrentScoreLabel" type="Label" parent="GameControlNode/UICanvasLayer"]
 offset_left = 2.0
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="LevelTimeLabel" type="Label" parent="GameControlNode"]
+[node name="LevelTimeLabel" type="Label" parent="GameControlNode/UICanvasLayer"]
 offset_left = 1.0
 offset_top = 23.0
 offset_right = 41.0
@@ -209,3 +211,5 @@ offset_bottom = 46.0
 
 [node name="GameInfoNode" type="Node" parent="."]
 script = ExtResource("7_y38ur")
+
+[connection signal="timeout" from="GameControlNode/LevelTimer" to="GameControlNode" method="_on_level_timer_timeout"]
