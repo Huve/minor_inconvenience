@@ -87,7 +87,6 @@ scale = Vector2(2.05, 2.20833)
 texture = ExtResource("1_h6ex5")
 hframes = 4
 vframes = 4
-frame = 12
 
 [node name="WolfAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

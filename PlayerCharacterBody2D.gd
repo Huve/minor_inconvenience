@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var _animation_player = $PlayerAnimationPlayer
+@onready var GameInfo = $"../GameInfoNode"
 
 const SPEED = 500.0
 

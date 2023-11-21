@@ -4,12 +4,7 @@ extends Control
 var time = 0
 var seconds: int = 0
 
-func countdown_timer(score: float, time: float) -> int:
-	# Update the game time.
-	score -= time
-	if score < 1:
-		score = 0
-	return int(score)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

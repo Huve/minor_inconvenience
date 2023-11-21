@@ -11,6 +11,7 @@ var total_score = 0
 var current_level_score = 0
 var global_level_time = 10
 
+@onready var player = $"../PlayerCharacterBody2D"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -1,31 +1,16 @@
 extends CharacterBody2D
 
-@export var speed = 200
-var player_position
+@export var MAX_SPEED = 200
+@onready var GameInfo = $"../GameInfoNode"
 var target_position
 
-@onready var _animation_enemy = $WolfAnimationPlayer
-@onready var player = get_parent().get_node("PlayerCharacterBody2D")
-
-func _process(_delta):
-	pass
-	#if Input.is_action_pressed("ui_right"):
-#		_animation_enemy.play("walkRight")
-#	elif Input.is_action_pressed("ui_left"):
-#		_animation_enemy.play("walkLeft")
-#	elif Input.is_action_pressed("ui_up"):
-#		_animation_enemy.play("walkUp")
-#	elif Input.is_action_pressed("ui_down"):
-#		_animation_enemy.play("walkDown")
-#	else:
-	#	_animation_enemy.stop()
-		
-func _physics_process(_delta):
-	player_position = player.position
-	target_position = (player_position - position).normalized()
-
-	if position.distance_to(player_position) > 3:
-		look_at(player_position)
-		velocity = target_position * speed
-		move_and_slide()
-		
+func _process(delta):
+	var direction = get_direction_to_player()
+	velocity = direction * MAX_SPEED
+	move_and_slide()
+	
+func get_direction_to_player():
+	var player_node = GameInfo.player
+	if player_node != null:
+		return (player_node.global_position - global_position).normalized()
+	return Vector2.ZERO

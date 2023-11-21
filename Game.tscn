@@ -5,10 +5,10 @@
 [ext_resource type="Script" path="res://LevelTileMap.gd" id="3_7ymy6"]
 [ext_resource type="Script" path="res://PlayerCharacterBody2D.gd" id="4_7ludo"]
 [ext_resource type="Texture2D" uid="uid://u6p3vrwc2jtt" path="res://images/TX Player.png" id="4_f0eyl"]
-[ext_resource type="PackedScene" uid="uid://wbve38omeo7j" path="res://enemy.tscn" id="6_h0cjy"]
 [ext_resource type="Script" path="res://PlayerCamera2D.gd" id="6_xnst2"]
 [ext_resource type="Script" path="res://GameInfoNode.gd" id="7_y38ur"]
 [ext_resource type="Script" path="res://GameControlNode.gd" id="8_tqrfe"]
+[ext_resource type="Script" path="res://EnemySpawnNode.gd" id="10_n7cxs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_of8oy"]
 texture = ExtResource("1_wvrlh")
@@ -175,18 +175,6 @@ limit_left = 0
 limit_top = 0
 script = ExtResource("6_xnst2")
 
-[node name="wolfEnemy" parent="." instance=ExtResource("6_h0cjy")]
-position = Vector2(299, 614)
-
-[node name="wolfEnemy2" parent="." instance=ExtResource("6_h0cjy")]
-position = Vector2(930, 122)
-
-[node name="wolfEnemy3" parent="." instance=ExtResource("6_h0cjy")]
-position = Vector2(403, 252)
-
-[node name="wolfEnemy4" parent="." instance=ExtResource("6_h0cjy")]
-position = Vector2(959, 605)
-
 [node name="GameControlNode" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -211,5 +199,8 @@ offset_bottom = 46.0
 
 [node name="GameInfoNode" type="Node" parent="."]
 script = ExtResource("7_y38ur")
+
+[node name="EnemySpawnNode" type="Node2D" parent="."]
+script = ExtResource("10_n7cxs")
 
 [connection signal="timeout" from="GameControlNode/LevelTimer" to="GameControlNode" method="_on_level_timer_timeout"]
