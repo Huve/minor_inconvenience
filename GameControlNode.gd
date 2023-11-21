@@ -33,7 +33,8 @@ func _ready():
 func _process(_delta):
 	var level_timer = $LevelTimer
 	var TimeLabel = $UICanvasLayer/LevelTimeLabel
-	var level_time_text = "Time: " + str(fmod(level_timer.time_left, 60))
+	var level_time = str(floor(level_timer.time_left))
+	var level_time_text = "Time: " + level_time
 	TimeLabel.set_text(level_time_text)
 
 func _on_level_timer_timeout():
