@@ -17,7 +17,6 @@ func _ready():
 	
 
 func spawnEnemy():
-	var angle = randi_range(50, 100 * PI)
 	var enemy_scene = preload("res://enemy.tscn")  # Load the enemy scene
 	var random_direction = Vector2.RIGHT.rotated(randf_range(0, TAU))
 	var spawn_position = player.global_position + (random_direction * SPAWN_RADIUS)

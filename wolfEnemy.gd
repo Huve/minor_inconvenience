@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var GameInfo = $"../GameInfoNode"
 var target_position
 
-func _process(delta):
+func _process(_delta):
 	var direction = get_direction_to_player()
 	velocity = direction * MAX_SPEED
 	move_and_slide()
