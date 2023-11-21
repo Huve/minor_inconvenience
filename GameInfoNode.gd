@@ -3,7 +3,8 @@ extends Node
 var player_level = 0
 var player_strength = 1
 var player_speed = 1
-var player_health = 1
+var max_player_health = 10
+var player_health = 10
 
 var level_count = 1
 var default_total_score = 0

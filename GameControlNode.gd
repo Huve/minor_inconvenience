@@ -13,6 +13,9 @@ func _ready():
 	var level_timer = $LevelTimer
 	var TimeLabel = $UICanvasLayer/LevelTimeLabel
 	var CurrentScoreLabel = $UICanvasLayer/CurrentScoreLabel
+	
+	set_health_label()
+	set_health_bar()
 
 	level_timer.wait_time = GameInfo.global_level_time
 	level_timer.start()
@@ -22,7 +25,13 @@ func _ready():
 	
 	var game_score_text = "Total score: " + str(GameInfo.total_score)
 	CurrentScoreLabel.set_text(game_score_text)
-
+	
+func set_health_bar():
+	$UICanvasLayer/HealthBar.max_value = GameInfo.max_player_health
+	$UICanvasLayer/HealthBar.value = GameInfo.player_health
+	
+func set_health_label():
+	$UICanvasLayer/HealthLabel.text = "Health: %s" % GameInfo.player_health
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

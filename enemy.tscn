@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://wbve38omeo7j"]
+[gd_scene load_steps=9 format=3 uid="uid://wbve38omeo7j"]
 
 [ext_resource type="Texture2D" uid="uid://lth60ow11pbe" path="res://wolf_sprite_mod.png" id="1_h6ex5"]
 [ext_resource type="Script" path="res://wolfEnemy.gd" id="1_ugmvh"]
@@ -79,6 +79,9 @@ _data = {
 "walkUp": SubResource("Animation_bxf21")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xqe16"]
+size = Vector2(28, 85)
+
 [node name="wolfEnemy" type="CharacterBody2D"]
 script = ExtResource("1_ugmvh")
 
@@ -92,3 +95,7 @@ vframes = 4
 libraries = {
 "": SubResource("AnimationLibrary_8rxup")
 }
+
+[node name="WolfCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(2, 4.5)
+shape = SubResource("RectangleShape2D_xqe16")

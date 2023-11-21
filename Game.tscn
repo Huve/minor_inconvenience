@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cnd4um8dqovvl"]
+[gd_scene load_steps=19 format=3 uid="uid://cnd4um8dqovvl"]
 
 [ext_resource type="Script" path="res://Game.gd" id="1_vbgrm"]
 [ext_resource type="Texture2D" uid="uid://digppf2l3kqo5" path="res://images/TX Tileset Grass.png" id="1_wvrlh"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://u6p3vrwc2jtt" path="res://images/TX Player.png" id="4_f0eyl"]
 [ext_resource type="Script" path="res://PlayerCamera2D.gd" id="6_xnst2"]
 [ext_resource type="Script" path="res://GameInfoNode.gd" id="7_y38ur"]
+[ext_resource type="Script" path="res://HealthBar.gd" id="8_o522x"]
 [ext_resource type="Script" path="res://GameControlNode.gd" id="8_tqrfe"]
 [ext_resource type="Script" path="res://EnemySpawnNode.gd" id="10_n7cxs"]
 
@@ -187,15 +188,32 @@ script = ExtResource("8_tqrfe")
 [node name="UICanvasLayer" type="CanvasLayer" parent="GameControlNode"]
 
 [node name="CurrentScoreLabel" type="Label" parent="GameControlNode/UICanvasLayer"]
-offset_left = 2.0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 8.0
+offset_top = 65.0
+offset_right = 46.0
+offset_bottom = 88.0
 
 [node name="LevelTimeLabel" type="Label" parent="GameControlNode/UICanvasLayer"]
-offset_left = 1.0
-offset_top = 23.0
-offset_right = 41.0
-offset_bottom = 46.0
+offset_left = 8.0
+offset_top = 38.0
+offset_right = 48.0
+offset_bottom = 61.0
+
+[node name="HealthBar" type="ProgressBar" parent="GameControlNode/UICanvasLayer"]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 156.0
+offset_bottom = 32.0
+max_value = 10.0
+step = 1.0
+show_percentage = false
+script = ExtResource("8_o522x")
+
+[node name="HealthLabel" type="Label" parent="GameControlNode/UICanvasLayer"]
+offset_left = 11.0
+offset_top = 7.0
+offset_right = 51.0
+offset_bottom = 30.0
 
 [node name="GameInfoNode" type="Node" parent="."]
 script = ExtResource("7_y38ur")
