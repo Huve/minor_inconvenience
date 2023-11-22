@@ -1,7 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://wbve38omeo7j"]
+[gd_scene load_steps=10 format=3 uid="uid://wbve38omeo7j"]
 
 [ext_resource type="Texture2D" uid="uid://lth60ow11pbe" path="res://wolf_sprite_mod.png" id="1_h6ex5"]
 [ext_resource type="Script" path="res://wolfEnemy.gd" id="1_ugmvh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6rjkc"]
+size = Vector2(28, 89)
 
 [sub_resource type="Animation" id="Animation_f2euc"]
 resource_name = "walkDown"
@@ -83,6 +86,8 @@ _data = {
 size = Vector2(28, 85)
 
 [node name="wolfEnemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_ugmvh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -90,6 +95,12 @@ scale = Vector2(2.05, 2.20833)
 texture = ExtResource("1_h6ex5")
 hframes = 4
 vframes = 4
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionBox" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(1, 4.5)
+shape = SubResource("RectangleShape2D_6rjkc")
 
 [node name="WolfAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var MAX_SPEED = 200
 @onready var GameInfo = $"../GameInfoNode"
 var target_position
+var damage = 1
 
 func _process(_delta):
 	var direction = get_direction_to_player()

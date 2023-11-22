@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cnd4um8dqovvl"]
+[gd_scene load_steps=20 format=3 uid="uid://cnd4um8dqovvl"]
 
 [ext_resource type="Script" path="res://Game.gd" id="1_vbgrm"]
 [ext_resource type="Texture2D" uid="uid://digppf2l3kqo5" path="res://images/TX Tileset Grass.png" id="1_wvrlh"]
@@ -142,6 +142,8 @@ _data = {
 "player_movement_3": SubResource("Animation_osodt")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_01btm"]
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_vbgrm")
 
@@ -174,7 +176,14 @@ libraries = {
 position = Vector2(0, 2)
 limit_left = 0
 limit_top = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
 script = ExtResource("6_xnst2")
+
+[node name="PlayerHitBox" type="Area2D" parent="PlayerCharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCharacterBody2D/PlayerHitBox"]
+shape = SubResource("RectangleShape2D_01btm")
 
 [node name="GameControlNode" type="Control" parent="."]
 layout_mode = 3
@@ -221,4 +230,5 @@ script = ExtResource("7_y38ur")
 [node name="EnemySpawnNode" type="Node2D" parent="."]
 script = ExtResource("10_n7cxs")
 
+[connection signal="area_entered" from="PlayerCharacterBody2D/PlayerHitBox" to="PlayerCharacterBody2D" method="_on_player_hit_box_area_entered"]
 [connection signal="timeout" from="GameControlNode/LevelTimer" to="GameControlNode" method="_on_level_timer_timeout"]

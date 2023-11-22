@@ -2,11 +2,13 @@ extends CharacterBody2D
 
 @onready var _animation_player = $PlayerAnimationPlayer
 @onready var GameInfo = $"../GameInfoNode"
+@onready var GameControl = $"../GameControlNode"
 
 const SPEED = 500.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
 
 func _process(_delta):
 	if Input.is_action_pressed("ui_right"):
@@ -20,6 +22,13 @@ func _process(_delta):
 	else:
 		_animation_player.stop()
 
+
+func handle_collision():
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+
+		
 func _physics_process(_delta):
 	
 	# Get the player's input.
@@ -33,6 +42,13 @@ func _physics_process(_delta):
 	
 	# Move the character.
 	var _collision = move_and_slide()
-	#move_and_collide(velocity * delta)
-	#if _collision:
-	#	print("I collided with ", _collision.get_collider().name)
+	handle_collision()
+
+
+func _on_player_hit_box_area_entered(area):
+	if area.name == "HitBox":
+		var parent = area.get_parent()
+		print(parent.damage)
+		GameInfo.player_health = GameInfo.player_health - parent.damage
+		GameControl.set_health_bar()
+		GameControl.set_health_label()
