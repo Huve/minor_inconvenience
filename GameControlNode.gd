@@ -40,6 +40,10 @@ func _process(_delta):
 	var level_time = str(floor(level_timer.time_left))
 	var level_time_text = "Time: " + level_time
 	TimeLabel.set_text(level_time_text)
+	
 
 func _on_level_timer_timeout():
 	pass
+	
+func game_over():
+	get_tree().change_scene_to_file("res://EndGame.tscn")

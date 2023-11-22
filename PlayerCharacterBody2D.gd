@@ -48,7 +48,9 @@ func _physics_process(_delta):
 func _on_player_hit_box_area_entered(area):
 	if area.name == "HitBox":
 		var parent = area.get_parent()
-		print(parent.damage)
-		GameInfo.player_health = GameInfo.player_health - parent.damage
+		GameInfo.player_health = max(GameInfo.player_health - parent.damage, 0)
 		GameControl.set_health_bar()
 		GameControl.set_health_label()
+		# If player runs out of health, end the game
+		if GameInfo.player_health <= 0:
+			GameControl.game_over()

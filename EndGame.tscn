@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dbqjux8mggr64"]
+
+[node name="EndGame" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 293.0
+offset_top = 124.0
+offset_right = 852.0
+offset_bottom = 461.0
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
