@@ -30,7 +30,6 @@ func handle_collision():
 
 		
 func _physics_process(_delta):
-	
 	# Get the player's input.
 	var input = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 

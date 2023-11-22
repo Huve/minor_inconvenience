@@ -43,7 +43,7 @@ func _process(_delta):
 	
 
 func _on_level_timer_timeout():
-	pass
+	get_tree().change_scene_to_file("res://Game.tscn")
 	
 func game_over():
 	get_tree().change_scene_to_file("res://EndGame.tscn")

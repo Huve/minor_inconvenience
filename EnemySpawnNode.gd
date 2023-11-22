@@ -7,7 +7,6 @@ var spawn_timer
 
 func _ready():
 	set_process(true)
-	
 	# Set up the timer to spawn enemies at regular intervals
 	spawn_timer = Timer.new()
 	spawn_timer.wait_time = spawn_interval
