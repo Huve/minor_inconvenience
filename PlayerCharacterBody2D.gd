@@ -20,7 +20,8 @@ func _process(_delta):
 	elif Input.is_action_pressed("ui_down"):
 		_animation_player.play("player_movement_1")
 	else:
-		_animation_player.stop()
+		pass
+		#_animation_player.stop()
 
 
 func handle_collision():
@@ -38,6 +39,8 @@ func _physics_process(_delta):
 
 	# Set the character's velocity based on the input.
 	velocity = input * SPEED
+	if velocity.x == 0 and velocity.y == 0:
+		_animation_player.play("player_idle_right")
 	
 	# Move the character.
 	var _collision = move_and_slide()
