@@ -12,7 +12,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _process(_delta):
 	if Input.is_action_pressed("ui_right"):
-		_animation_player.play("player_movement_2")
+		_animation_player.play("player_movement_right")
 	elif Input.is_action_pressed("ui_left"):
 		_animation_player.play("player_movement_2")
 	elif Input.is_action_pressed("ui_up"):

@@ -1,10 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://cnd4um8dqovvl"]
+[gd_scene load_steps=21 format=3 uid="uid://cnd4um8dqovvl"]
 
 [ext_resource type="Script" path="res://Game.gd" id="1_vbgrm"]
 [ext_resource type="Texture2D" uid="uid://digppf2l3kqo5" path="res://images/TX Tileset Grass.png" id="1_wvrlh"]
 [ext_resource type="Script" path="res://LevelTileMap.gd" id="3_7ymy6"]
 [ext_resource type="Script" path="res://PlayerCharacterBody2D.gd" id="4_7ludo"]
-[ext_resource type="Texture2D" uid="uid://u6p3vrwc2jtt" path="res://images/TX Player.png" id="4_f0eyl"]
+[ext_resource type="Texture2D" uid="uid://dmy4r6mkffxvx" path="res://images/fuckboi delivery guy-Main-Sprite-Sheet.png" id="5_ctpdi"]
 [ext_resource type="Script" path="res://PlayerCamera2D.gd" id="6_xnst2"]
 [ext_resource type="Script" path="res://GameInfoNode.gd" id="7_y38ur"]
 [ext_resource type="Script" path="res://HealthBar.gd" id="8_o522x"]
@@ -134,12 +134,29 @@ tracks/0/keys = {
 "values": [1]
 }
 
+[sub_resource type="Animation" id="Animation_d75qu"]
+resource_name = "player_movement_right"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vy8i4"]
 _data = {
 "RESET": SubResource("Animation_wfx0p"),
 "player_movement_1": SubResource("Animation_y2bht"),
 "player_movement_2": SubResource("Animation_bycuh"),
-"player_movement_3": SubResource("Animation_osodt")
+"player_movement_3": SubResource("Animation_osodt"),
+"player_movement_right": SubResource("Animation_d75qu")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_01btm"]
@@ -159,8 +176,8 @@ script = ExtResource("4_7ludo")
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerCharacterBody2D"]
 position = Vector2(-1, -6)
-texture = ExtResource("4_f0eyl")
-hframes = 4
+texture = ExtResource("5_ctpdi")
+hframes = 12
 vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCharacterBody2D"]
@@ -176,7 +193,6 @@ libraries = {
 position = Vector2(0, 2)
 limit_left = 0
 limit_top = 0
-position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 script = ExtResource("6_xnst2")
 
