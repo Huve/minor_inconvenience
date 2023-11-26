@@ -8,20 +8,30 @@ const SPEED = 500.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var facing = "right"
 
 
 func _process(_delta):
+	
 	if Input.is_action_pressed("ui_right"):
+		print('facing %s' % facing)
+		if facing == "left":
+			$Sprite2D.scale.x = 1
+			facing = "right"
 		_animation_player.play("player_movement_right")
 	elif Input.is_action_pressed("ui_left"):
-		_animation_player.play("player_movement_2")
+		print('facing %s' % facing)
+		if facing == "right":
+			$Sprite2D.scale.x = -1
+			print("turning left")
+			facing = "left"
+		_animation_player.play("player_movement_right")
 	elif Input.is_action_pressed("ui_up"):
-		_animation_player.play("player_movement_3")
+		_animation_player.play("player_movement_right")
 	elif Input.is_action_pressed("ui_down"):
-		_animation_player.play("player_movement_1")
+		_animation_player.play("player_movement_right")
 	else:
 		pass
-		#_animation_player.stop()
 
 
 func handle_collision():
