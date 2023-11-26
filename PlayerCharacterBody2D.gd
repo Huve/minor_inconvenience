@@ -3,27 +3,21 @@ extends CharacterBody2D
 @onready var _animation_player = $PlayerAnimationPlayer
 @onready var GameInfo = $"../GameInfoNode"
 @onready var GameControl = $"../GameControlNode"
+@onready var hurtBox = $PlayerHitBox
+const SPEED = 500.0
 
-const SPEED = 250.0
-
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var facing = "right"
 
 
 func _process(_delta):
-	
 	if Input.is_action_pressed("ui_right"):
-		print('facing %s' % facing)
 		if facing == "left":
 			$Sprite2D.scale.x = 1
 			facing = "right"
 		_animation_player.play("player_movement_right")
 	elif Input.is_action_pressed("ui_left"):
-		print('facing %s' % facing)
 		if facing == "right":
 			$Sprite2D.scale.x = -1
-			print("turning left")
 			facing = "left"
 		_animation_player.play("player_movement_right")
 	elif Input.is_action_pressed("ui_up"):
@@ -32,12 +26,6 @@ func _process(_delta):
 		_animation_player.play("player_movement_right")
 	else:
 		pass
-
-
-func handle_collision():
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		var collider = collision.get_collider()
 
 		
 func _physics_process(_delta):
@@ -54,10 +42,12 @@ func _physics_process(_delta):
 	
 	# Move the character.
 	var _collision = move_and_slide()
-	handle_collision()
 
 
 func _on_player_hit_box_area_entered(area):
+	# Handle what happens when something enters the player hitbox.
+	
+	# If an object with a hitbox enters the player hitbox, take damage.
 	if area.name == "HitBox":
 		var parent = area.get_parent()
 		GameInfo.player_health = max(GameInfo.player_health - parent.damage, 0)
@@ -66,3 +56,7 @@ func _on_player_hit_box_area_entered(area):
 		# If player runs out of health, end the game
 		if GameInfo.player_health <= 0:
 			GameControl.game_over()
+	if area.has_method('collect'):
+		# TODO: collec item
+		print(area.name)
+		area.collect()

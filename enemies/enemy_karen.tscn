@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=3 uid="uid://bpjnm7aurhvma"]
+
+[ext_resource type="Script" path="res://enemies/enemy_karen.gd" id="1_qdui7"]
+[ext_resource type="Texture2D" uid="uid://4tfwy8ik17bc" path="res://images/Enemy-Karen.png" id="2_0ax0k"]
+
+[sub_resource type="Animation" id="Animation_y4eka"]
+resource_name = "wolf_run_down"
+loop_mode = 1
+step = 0.25
+
+[sub_resource type="Animation" id="Animation_58t2j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_l38dq"]
+resource_name = "karen_run_right"
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(5, 0), Vector2i(6, 0), Vector2i(7, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_in5sx"]
+_data = {
+"RESET": SubResource("Animation_58t2j"),
+"karen_run_right": SubResource("Animation_l38dq"),
+"wolf_run_down": SubResource("Animation_y4eka")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fmfxc"]
+size = Vector2(20, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggmdb"]
+size = Vector2(4, 4)
+
+[node name="enemy_karen" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_qdui7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+speed_scale = 2.0
+libraries = {
+"": SubResource("AnimationLibrary_in5sx")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_0ax0k")
+hframes = 8
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_fmfxc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ggmdb")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://cnd4um8dqovvl"]
+[gd_scene load_steps=24 format=3 uid="uid://cnd4um8dqovvl"]
 
 [ext_resource type="Script" path="res://Game.gd" id="1_vbgrm"]
 [ext_resource type="Texture2D" uid="uid://digppf2l3kqo5" path="res://images/TX Tileset Grass.png" id="1_wvrlh"]
 [ext_resource type="Script" path="res://LevelTileMap.gd" id="3_7ymy6"]
+[ext_resource type="PackedScene" uid="uid://dsyj4qe76to4f" path="res://collectables/wicked_cucumber.tscn" id="3_y8rq7"]
 [ext_resource type="Script" path="res://PlayerCharacterBody2D.gd" id="4_7ludo"]
 [ext_resource type="Texture2D" uid="uid://dmy4r6mkffxvx" path="res://images/fuckboi delivery guy-Main-Sprite-Sheet.png" id="5_ctpdi"]
 [ext_resource type="Script" path="res://PlayerCamera2D.gd" id="6_xnst2"]
@@ -64,12 +65,18 @@ texture_region_size = Vector2i(64, 64)
 3:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:3/0/physics_layer_0/angular_velocity = 0.0
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_cnuxj"]
+resource_name = "WorldCollectables"
+scenes/1/scene = ExtResource("3_y8rq7")
+
 [sub_resource type="TileSet" id="TileSet_upftq"]
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_of8oy")
+sources/4 = SubResource("TileSetScenesCollectionSource_cnuxj")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gs4k5"]
+size = Vector2(14, 56)
 
 [sub_resource type="Animation" id="Animation_wfx0p"]
 length = 0.001
@@ -177,6 +184,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_01btm"]
+size = Vector2(14, 56)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_vbgrm")
@@ -185,6 +193,14 @@ script = ExtResource("1_vbgrm")
 tile_set = SubResource("TileSet_upftq")
 cell_quadrant_size = 64
 format = 2
+layer_0/name = "ground"
+layer_1/name = "collectables"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 1
+layer_1/tile_data = PackedInt32Array(131075, 4, 65536)
 script = ExtResource("3_7ymy6")
 
 [node name="PlayerCharacterBody2D" type="CharacterBody2D" parent="."]
@@ -198,7 +214,7 @@ hframes = 12
 vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCharacterBody2D"]
-position = Vector2(-1, -1)
+position = Vector2(-2, -6)
 shape = SubResource("RectangleShape2D_gs4k5")
 
 [node name="PlayerAnimationPlayer" type="AnimationPlayer" parent="PlayerCharacterBody2D"]
@@ -217,6 +233,7 @@ script = ExtResource("6_xnst2")
 [node name="PlayerHitBox" type="Area2D" parent="PlayerCharacterBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCharacterBody2D/PlayerHitBox"]
+position = Vector2(-2, -6)
 shape = SubResource("RectangleShape2D_01btm")
 
 [node name="GameControlNode" type="Control" parent="."]

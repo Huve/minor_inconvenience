@@ -10,7 +10,7 @@ var level_count = 1
 var default_total_score = 0
 var total_score = 0
 var current_level_score = 0
-var global_level_time = 10
+var global_level_time = 20
 
 @onready var player = $"../PlayerCharacterBody2D"
 

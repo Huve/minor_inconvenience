@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsyj4qe76to4f"]
+
+[ext_resource type="PackedScene" uid="uid://dn5p04axqj3f" path="res://collectables/collectable.tscn" id="1_rbns8"]
+[ext_resource type="Texture2D" uid="uid://cxdiknako5it1" path="res://images/wicked_cucumber.png" id="2_d72kx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ixwf4"]
+resource_local_to_scene = true
+size = Vector2(7, 29)
+
+[node name="WickedCucumber" instance=ExtResource("1_rbns8")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(-1.5, -0.5)
+shape = SubResource("RectangleShape2D_ixwf4")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_d72kx")
