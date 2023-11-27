@@ -31,3 +31,4 @@ func drop_item():
 	var item = dropped_item.instantiate()
 	get_parent().add_child(item)
 	item.global_position = global_position
+	item.start_animations()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dsyj4qe76to4f"]
+[gd_scene load_steps=9 format=3 uid="uid://dsyj4qe76to4f"]
 
 [ext_resource type="PackedScene" uid="uid://dn5p04axqj3f" path="res://collectables/collectable.tscn" id="1_rbns8"]
 [ext_resource type="Texture2D" uid="uid://cxdiknako5it1" path="res://images/wicked_cucumber.png" id="2_d72kx"]
@@ -6,6 +6,91 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ixwf4"]
 resource_local_to_scene = true
 size = Vector2(7, 29)
+
+[sub_resource type="Animation" id="Animation_fbvw5"]
+resource_name = "collectable_float"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -5), Vector2(0, 0), Vector2(0, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.349066, 0.0, 0.349066]
+}
+
+[sub_resource type="Animation" id="Animation_uq88e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ba3if"]
+resource_name = "item_float"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.349066, 0.0, 0.349066]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_01ulu"]
+_data = {
+"RESET": SubResource("Animation_uq88e"),
+"collectable_float": SubResource("Animation_fbvw5"),
+"item_float": SubResource("Animation_ba3if")
+}
+
+[sub_resource type="Curve" id="Curve_u0vho"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.284211), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="WickedCucumber" instance=ExtResource("1_rbns8")]
 
@@ -15,3 +100,25 @@ shape = SubResource("RectangleShape2D_ixwf4")
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_d72kx")
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_01ulu")
+}
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="3"]
+position = Vector2(-1, -14)
+amount = 20
+lifetime = 5.0
+speed_scale = 2.29
+explosiveness = 0.14
+randomness = 0.62
+direction = Vector2(2, 2)
+gravity = Vector2(0, 4)
+initial_velocity_min = 1.0
+initial_velocity_max = 4.0
+scale_amount_max = 3.0
+color = Color(0.533333, 0.968627, 0.505882, 0.639216)
+hue_variation_min = -0.06
+hue_variation_max = 0.32
+hue_variation_curve = SubResource("Curve_u0vho")
